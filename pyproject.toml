@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tde-lab"
+version = "1.1.0"
+description = "Time-delay estimation research framework: robust TDE methods under Gaussian and alpha-stable noise"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Viacheslav Oliinyk", email = "oliinyk.vch@pm.me" }]
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "matplotlib>=3.7",
+    "click>=8.1",
+    "soundfile>=0.12",
+    "pandas>=2.0",
+    "tqdm>=4.66",
+    "PyWavelets>=1.4",
+]
+
+[project.optional-dependencies]
+gui = ["streamlit>=1.35"]
+dev = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.4"]
+
+[project.scripts]
+tde = "tde_lab.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "slow: long-running tests (MATLAB validation sweeps); deselect with -m 'not slow'",
+]
+addopts = "-m 'not slow'"
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]

@@ -1,0 +1,3 @@
+# Streamlit Community Cloud installs from this file.
+# Installs the tde-lab package itself (with the GUI extra) from the repo root.
+.[gui]
