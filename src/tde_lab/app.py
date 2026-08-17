@@ -3,9 +3,13 @@ from __future__ import annotations
 
 import os
 import tempfile
+from pathlib import Path
 
 import numpy as np
 import streamlit as st
+
+# Streamlit Community Cloud always clones the repo to /mount/src/<repo>.
+ON_STREAMLIT_CLOUD = str(Path(__file__).resolve()).startswith("/mount/src")
 
 from tde_lab.config.settings import SignalConfig, NoiseConfig, MethodConfig, ExportConfig
 from tde_lab.methods import ALL_METHODS, build_method
@@ -110,7 +114,7 @@ def _run_single(methods, sig_cfg, noise_cfg, wav_file, mic_distance, parallel,
                 "MSE": f"{r.mse:.3f}" if r.mse == r.mse else "nan",
                 "Time (s)": f"{r.extra.get('elapsed_s', 0):.3f}",
             })
-        st.dataframe(pd.DataFrame(rows), use_container_width=True)
+        st.dataframe(pd.DataFrame(rows), width="stretch")
         if refined_note:
             st.success(refined_note)
         if saver:
@@ -200,6 +204,18 @@ st.set_page_config(
 
 st.title("TDE Lab")
 st.caption("Time-delay estimation of noise-like signals — robust methods, SαS noise sweeps, DOA")
+
+if ON_STREAMLIT_CLOUD:
+    st.warning(
+        "Running on Streamlit Community Cloud (free tier, ~1 GB RAM, shared "
+        "CPU): full-scale sweeps (10k realizations) may be slow or hit "
+        "resource limits — prefer `--quick`-scale settings here and run big "
+        "sweeps via the CLI on your own machine. **Save outputs to disk** "
+        "writes to this container's temporary storage, not your computer — "
+        "there's no download link, and files are lost when the app "
+        "restarts or sleeps.",
+        icon="⚠️",
+    )
 
 
 # ── sidebar ───────────────────────────────────────────────────────────────────
@@ -298,7 +314,7 @@ with st.sidebar:
         sweep_alphas = st.text_input("Alpha values", sweep_alphas)
         sweep_gammas = st.text_input("Gamma values", sweep_gammas)
 
-    run_btn = st.button("Run", type="primary", use_container_width=True)
+    run_btn = st.button("Run", type="primary", width="stretch")
 
 
 # ── main panel ────────────────────────────────────────────────────────────────
