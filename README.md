@@ -156,3 +156,10 @@ in the module docstrings.
   docker build -t tde-lab .
   docker run --rm -p 8501:8501 tde-lab        # GUI at http://localhost:8501
   ```
+
+## License
+
+[PolyForm Noncommercial License 1.0.0](LICENSE) — free for any noncommercial
+use (research, education, personal projects); **commercial use is not
+permitted without the author's prior written consent**. For commercial
+licensing inquiries, contact oliinyk.vch@pm.me.

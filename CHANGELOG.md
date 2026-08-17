@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.1.1 — 2026-08-17
+
+- **Relicensed** from MIT to the [PolyForm Noncommercial License
+  1.0.0](https://polyformproject.org/licenses/noncommercial/1.0.0): free for
+  any noncommercial use (research, education, personal projects); commercial
+  use requires the author's prior written consent — contact
+  oliinyk.vch@pm.me.
+
 ## v1.1.0 — 2026-07-14
 
 Publication preparation.

@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tde-lab"
-version = "1.1.0"
+version = "1.1.1"
 description = "Time-delay estimation research framework: robust TDE methods under Gaussian and alpha-stable noise"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = { text = "PolyForm-Noncommercial-1.0.0" }
 authors = [{ name = "Viacheslav Oliinyk", email = "oliinyk.vch@pm.me" }]
 dependencies = [
     "numpy>=1.24",
